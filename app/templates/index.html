@@ -1,31 +1,981 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Portfolio</title>
+    <!-- Basic metadata & SEO -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Mahesh K. — Portfolio</title>
+    <meta name="description"
+        content="Portfolio of Mahesh — Full-stack developer. Projects, skills, contact and resume." />
+    <meta name="author" content="Mahesh K." />
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+
+    <!-- Google fonts (uses remote font; can remove if offline) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
     <style>
+        /* ---------------------------
+       Reset & base
+       --------------------------- */
+        :root {
+            --bg: #0f1724;
+            --card: #0b1220;
+            --muted: #94a3b8;
+            --accent: #06b6d4;
+            --glass: rgba(255, 255, 255, 0.04);
+            --max-width: 1100px;
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        html,
         body {
-            font-family: Arial;
-            background-color: #fafafa;
-            text-align: center;
+            height: 100%
         }
 
-        h1 {
-            color: #333;
-            margin-top: 100px;
+        body {
+            margin: 0;
+            font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+            background: linear-gradient(180deg, #071126 0%, #071526 60%, #041022 100%);
+            color: #e6eef6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+            padding-bottom: 80px;
         }
 
-        p {
-            color: #666;
+        a {
+            color: var(--accent);
+            text-decoration: none
+        }
+
+        img {
+            max-width: 100%;
+            display: block
+        }
+
+        /* ---------------------------
+       Layout container
+       --------------------------- */
+        .container {
+            width: 90%;
+            max-width: var(--max-width);
+            margin: 0 auto;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(6px);
+            background: linear-gradient(180deg, rgba(3, 7, 18, 0.65), rgba(3, 7, 18, 0.35));
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            z-index: 999;
+        }
+
+        .nav-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .brand {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .logo {
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            background: linear-gradient(135deg, var(--accent), #7c3aed);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #021024;
+            font-weight: 800;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.45);
+            font-size: 18px;
+        }
+
+        /* nav */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 18px;
+            align-items: center
+        }
+
+        nav li a {
+            padding: 8px 12px;
+            border-radius: 8px;
+            color: var(--muted);
+            font-weight: 600
+        }
+
+        nav li a:hover {
+            color: #e6eef6;
+            background: var(--glass)
+        }
+
+        .cta {
+            background: linear-gradient(90deg, var(--accent), #7c3aed);
+            padding: 8px 12px;
+            border-radius: 10px;
+            color: #021024;
+            font-weight: 700;
+            box-shadow: 0 8px 28px rgba(6, 182, 212, 0.12);
+        }
+
+        /* hamburger (mobile) */
+        .hamburger {
+            display: none;
+            cursor: pointer
+        }
+
+        .hamburger div {
+            width: 22px;
+            height: 2px;
+            background: #cfe8f4;
+            margin: 4px 0;
+            border-radius: 2px
+        }
+
+        /* ---------------------------
+       Hero
+       --------------------------- */
+        .hero {
+            display: grid;
+            grid-template-columns: 1fr 420px;
+            gap: 32px;
+            align-items: center;
+            padding: 48px 0 60px;
+        }
+
+        .hero-left h1 {
+            margin: 0 0 10px 0;
+            font-size: 36px;
+            line-height: 1.05;
+            letter-spacing: -0.02em;
+        }
+
+        .tagline {
+            color: var(--muted);
+            margin-bottom: 18px
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 12px;
+            align-items: center
+        }
+
+        .btn {
+            padding: 12px 16px;
+            border-radius: 10px;
+            background: var(--glass);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            font-weight: 700;
+            color: #e6eef6;
+        }
+
+        .btn-primary {
+            background: linear-gradient(90deg, var(--accent), #7c3aed);
+            color: #021024;
+            border: none
+        }
+
+        .profile-card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            padding: 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 8px 30px rgba(2, 6, 12, 0.5);
+        }
+
+        .avatar {
+            width: 100%;
+            border-radius: 10px;
+            overflow: hidden
+        }
+
+        .small-info {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 12px
+        }
+
+        .pill {
+            background: rgba(255, 255, 255, 0.03);
+            padding: 6px 10px;
+            border-radius: 999px;
+            font-weight: 600;
+            color: var(--muted)
+        }
+
+        /* ---------------------------
+       Panels: About, Skills, Projects
+       --------------------------- */
+        section {
+            padding: 40px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.02)
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px
+        }
+
+        .section-title h2 {
+            margin: 0;
+            font-size: 20px
+        }
+
+        .card {
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
+            padding: 18px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 12px 30px rgba(2, 6, 12, 0.45);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 22px
+        }
+
+        .bio {
+            color: var(--muted)
+        }
+
+        .skill-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px
+        }
+
+        .skill {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .progress-bar {
+            background: rgba(255, 255, 255, 0.04);
+            height: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-bar>i {
+            display: block;
+            height: 100%;
+            border-radius: 10px;
+            background: linear-gradient(90deg, var(--accent), #7c3aed);
+            width: 50%
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 12px
+        }
+
+        .project-card {
+            padding: 12px;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer
+        }
+
+        .project-card img {
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+
+        .techs {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap
+        }
+
+        .tech {
+            font-size: 12px;
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.02);
+            color: var(--muted)
+        }
+
+        /* timeline */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 10px
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: var(--accent);
+            margin-top: 6px
+        }
+
+        /* Blog preview */
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px
+        }
+
+        /* Contact form */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 360px;
+            gap: 22px
+        }
+
+        .form-row {
+            display: flex;
+            gap: 8px
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            color: #e6eef6;
+        }
+
+        textarea {
+            min-height: 140px;
+            resize: vertical
+        }
+
+        .error {
+            color: #ffb4b4;
+            font-size: 13px;
+            margin-top: 6px
+        }
+
+        /* footer */
+        footer {
+            padding: 26px 0 60px;
+            color: var(--muted);
+            border-top: 1px solid rgba(255, 255, 255, 0.02);
+            margin-top: 28px
+        }
+
+        .socials {
+            display: flex;
+            gap: 10px
+        }
+
+        /* modal image viewer */
+        .modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(2, 6, 12, 0.8);
+            z-index: 1200;
+        }
+
+        .modal.open {
+            display: flex
+        }
+
+        .modal .modal-inner {
+            max-width: 900px;
+            width: 95%;
+            border-radius: 10px;
+            overflow: hidden
+        }
+
+        .modal img {
+            width: 100%;
+            height: auto;
+            display: block
+        }
+
+        /* responsive */
+        @media (max-width:980px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center
+            }
+
+            .hero-left {
+                order: 2
+            }
+
+            .hamburger {
+                display: block
+            }
+
+            nav ul {
+                display: none
+            }
+
+            nav ul.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                right: 18px;
+                top: 64px;
+                background: linear-gradient(180deg, rgba(6, 7, 12, 0.85), rgba(6, 7, 12, 0.65));
+                padding: 12px;
+                border-radius: 10px
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr
+            }
+
+            .projects-grid,
+            .blog-grid {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media (max-width:600px) {
+
+            .projects-grid,
+            .blog-grid {
+                grid-template-columns: 1fr
+            }
+
+            .container {
+                width: 95%
+            }
+
+            .hero h1 {
+                font-size: 28px
+            }
         }
     </style>
 </head>
 
 <body>
-    <h1>Welcome to My Portfolio Site</h1>
-    <p>Deployed via Jenkins CI/CD 🚀</p>
+    <header>
+        <div class="container nav-inner" role="banner">
+            <div class="brand" aria-label="Mahesh portfolio">
+                <div class="logo">MK</div>
+                <div>
+                    <div style="font-size:15px">Mahesh Kharote</div>
+                    <div style="color:var(--muted);font-size:12px;margin-top:2px">AI | IoT | Full-stack</div>
+                </div>
+            </div>
+
+            <nav aria-label="Primary">
+                <div class="hamburger" id="hamb">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+                <ul id="navList">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a class="cta" href="#contact">Hire Me</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container" id="home" role="main">
+        <!-- HERO -->
+        <section class="hero" aria-label="Introduction">
+            <div class="hero-left">
+                <h1>Hi, I’m <span style="color:var(--accent)">Mahesh</span> — building useful things with AI & IoT.</h1>
+                <div class="tagline">I design and build full-stack applications, embedded systems and ML models that
+                    solve real-world problems. Currently open to freelance & collaboration.</div>
+                <div class="hero-cta">
+                    <a class="btn btn-primary" href="#projects">See Projects</a>
+                    <a class="btn" href="#contact">Get in touch</a>
+                </div>
+
+                <div style="display:flex;gap:12px;margin-top:22px;flex-wrap:wrap">
+                    <div class="card" style="display:flex;gap:12px;align-items:center">
+                        <div
+                            style="width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-weight:700">
+                            10+</div>
+                        <div>
+                            <div style="font-weight:700">Years Experience</div>
+                            <small class="bio">Practical experience in AI, IoT, and web development</small>
+                        </div>
+                    </div>
+
+                    <div class="card" style="display:flex;gap:12px;align-items:center">
+                        <div
+                            style="width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;align-items:center;justify-content:center;font-weight:700">
+                            30+</div>
+                        <div>
+                            <div style="font-weight:700">Projects</div>
+                            <small class="bio">From prototypes to production-ready apps</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="profile-card" aria-label="Profile">
+                <div class="avatar">
+                    <!-- placeholder SVG avatar -->
+                    <svg width="100%" height="220" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid slice"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="g1" x1="0" x2="1">
+                                <stop offset="0" stop-color="#06b6d4" />
+                                <stop offset="1" stop-color="#7c3aed" />
+                            </linearGradient>
+                        </defs>
+                        <rect width="800" height="400" fill="#041024" />
+                        <g transform="translate(40,24)">
+                            <rect x="0" y="0" rx="18" width="720" height="352" fill="url(#g1)" opacity="0.12"></rect>
+                            <text x="36" y="60" fill="#e6eef6" font-family="Inter,Arial" font-size="34"
+                                font-weight="700">Mahesh Kharote</text>
+                            <text x="36" y="100" fill="#bcd7e6" font-size="16">AI & IoT Developer • Full-stack
+                                Engineer</text>
+                            <text x="36" y="160" fill="#a6cbe0" font-size="14">Location: Pune, India</text>
+                            <text x="36" y="190" fill="#a6cbe0" font-size="14">Email: mahesh@example.com</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="small-info">
+                    <div class="pill">Available for hire</div>
+                    <div class="pill">Open to remote work</div>
+                    <div class="pill">Resume</div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- ABOUT -->
+        <section id="about" aria-labelledby="about-title">
+            <div class="section-title">
+                <h2 id="about-title">About Me</h2>
+            </div>
+
+            <div class="about-grid">
+                <div class="card">
+                    <p class="bio">
+                        I'm a computer engineer focused on building AI-enabled IoT systems and full-stack applications.
+                        I enjoy turning ideas into prototypes and production systems — from embedded firmware to
+                        scalable web backends. I love clean UX, reliable data pipelines, and efficient edge ML.
+                    </p>
+
+                    <h3 style="margin-top:14px">What I do</h3>
+                    <ul style="color:var(--muted);margin-top:8px">
+                        <li>Full-stack web development (React / Node / Flask)</li>
+                        <li>Embedded development (ESP32 / sensors / BLE)</li>
+                        <li>Machine learning for audio & vision</li>
+                        <li>CI/CD, containerization, and automation</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <h4>Experience</h4>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div>
+                                <strong>Software Engineer</strong><br>
+                                <small style="color:var(--muted)">Varroc — 2023 - Present</small>
+                                <div class="bio">Worked on embedded systems and data ingestion pipelines.</div>
+                            </div>
+                        </div>
+
+                        <div class="timeline-item">
+                            <div class="dot" aria-hidden="true"></div>
+                            <div>
+                                <strong>AI Intern</strong><br>
+                                <small style="color:var(--muted)">Research Lab — 2022</small>
+                                <div class="bio">Developed emotion detection & audio models.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" aria-labelledby="skills-title">
+            <div class="section-title">
+                <h2 id="skills-title">Skills</h2>
+            </div>
+
+            <div class="card">
+                <div style="display:flex;gap:20px;flex-wrap:wrap">
+                    <div style="flex:1;min-width:280px">
+                        <h4>Frontend</h4>
+                        <div class="skill-list">
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between">
+                                    <span>React</span><strong>85%</strong></div>
+                                <div class="progress-bar"><i style="width:85%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between">
+                                    <span>HTML/CSS</span><strong>95%</strong></div>
+                                <div class="progress-bar"><i style="width:95%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between">
+                                    <span>Three.js</span><strong>60%</strong></div>
+                                <div class="progress-bar"><i style="width:60%"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="flex:1;min-width:280px">
+                        <h4>Backend & ML</h4>
+                        <div class="skill-list">
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>Node /
+                                        Express</span><strong>80%</strong></div>
+                                <div class="progress-bar"><i style="width:80%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>Python /
+                                        Flask</span><strong>88%</strong></div>
+                                <div class="progress-bar"><i style="width:88%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>ML
+                                        (PyTorch/TensorFlow)</span><strong>70%</strong></div>
+                                <div class="progress-bar"><i style="width:70%"></i></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="flex:1;min-width:280px">
+                        <h4>Embedded & DevOps</h4>
+                        <div class="skill-list">
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>ESP32 /
+                                        MCU</span><strong>80%</strong></div>
+                                <div class="progress-bar"><i style="width:80%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>Docker /
+                                        Jenkins</span><strong>84%</strong></div>
+                                <div class="progress-bar"><i style="width:84%"></i></div>
+                            </div>
+                            <div class="skill">
+                                <div style="display:flex;justify-content:space-between"><span>SQL /
+                                        NoSQL</span><strong>75%</strong></div>
+                                <div class="progress-bar"><i style="width:75%"></i></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section id="projects" aria-labelledby="projects-title">
+            <div class="section-title">
+                <h2 id="projects-title">Selected Projects</h2>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="card project-card" data-image="https://picsum.photos/seed/p1/800/450"
+                    data-title="GloveX+ — Smart Glove"
+                    data-desc="Gesture-controlled glove with sign language translation + BLE connectivity">
+                    <img src="https://picsum.photos/seed/p1/800/450" alt="GloveX project preview">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <strong>GloveX+ — Smart Glove</strong>
+                        <div class="techs"><span class="tech">ESP32</span><span class="tech">ML</span></div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="card project-card" data-image="https://picsum.photos/seed/p2/800/450"
+                    data-title="Smart Mirror" data-desc="Virtual try-on mirror with facial emotion detection and TTS">
+                    <img src="https://picsum.photos/seed/p2/800/450" alt="Smart Mirror project">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <strong>Smart Mirror</strong>
+                        <div class="techs"><span class="tech">Three.js</span><span class="tech">Python</span></div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="card project-card" data-image="https://picsum.photos/seed/p3/800/450"
+                    data-title="Air Quality Visualizer"
+                    data-desc="Real-time AQI visualizer & forecast for small cities">
+                    <img src="https://picsum.photos/seed/p3/800/450" alt="Air Quality Visualizer">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <strong>AQ Visualizer</strong>
+                        <div class="techs"><span class="tech">IoT</span><span class="tech">React</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top:14px;display:flex;gap:10px">
+                <a class="btn" href="#" onclick="openAllProjects()">View all projects</a>
+                <a class="btn btn-primary" href="#" onclick="downloadResume()">Download Resume</a>
+            </div>
+        </section>
+
+        <!-- BLOG PREVIEW -->
+        <section id="blog" aria-labelledby="blog-title">
+            <div class="section-title">
+                <h2 id="blog-title">Blog & Articles</h2>
+            </div>
+
+            <div class="blog-grid">
+                <article class="card">
+                    <h4>Building an Offline-First IoT System</h4>
+                    <small style="color:var(--muted)">Aug 2025 • 8 min read</small>
+                    <p class="bio">How we designed local-first syncing and reduced edge latency for sensor networks.</p>
+                </article>
+
+                <article class="card">
+                    <h4>Deploying TinyML on ESP32</h4>
+                    <small style="color:var(--muted)">May 2025 • 10 min read</small>
+                    <p class="bio">A step-by-step guide to quantization and partitioning models for microcontrollers.
+                    </p>
+                </article>
+
+                <article class="card">
+                    <h4>CI/CD with Jenkins & Docker on Windows</h4>
+                    <small style="color:var(--muted)">Mar 2025 • 6 min read</small>
+                    <p class="bio">Practical tips for running Jenkins in Docker on Windows and deploying containers
+                        after push.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" aria-labelledby="contact-title">
+            <div class="section-title">
+                <h2 id="contact-title">Contact</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div class="card" style="min-height:260px">
+                    <form id="contactForm" novalidate>
+                        <div style="display:flex;gap:12px;flex-wrap:wrap">
+                            <div style="flex:1;min-width:140px">
+                                <label for="name">Name</label>
+                                <input id="name" name="name" type="text" placeholder="Your name" required>
+                                <div class="error" id="err-name" aria-live="polite"></div>
+                            </div>
+
+                            <div style="flex:1;min-width:140px">
+                                <label for="email">Email</label>
+                                <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                                <div class="error" id="err-email" aria-live="polite"></div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:10px">
+                            <label for="subject">Subject</label>
+                            <input id="subject" name="subject" type="text" placeholder="Subject" required>
+                            <div class="error" id="err-subject" aria-live="polite"></div>
+                        </div>
+
+                        <div style="margin-top:10px">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" placeholder="Write your message" required></textarea>
+                            <div class="error" id="err-message" aria-live="polite"></div>
+                        </div>
+
+                        <div style="margin-top:12px;display:flex;gap:10px;align-items:center">
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                            <small style="color:var(--muted)">Or email me at <a
+                                    href="mailto:mahesh@example.com">mahesh@example.com</a></small>
+                        </div>
+
+                        <div id="form-success" style="margin-top:10px;color:#8dedc7;display:none">Message ready to send
+                            (client-side simulation)</div>
+                    </form>
+                </div>
+
+                <aside class="card">
+                    <h4>Contact Info</h4>
+                    <p class="bio">Prefer email for initial contact. Available for freelancing & remote roles.</p>
+                    <div style="margin-top:10px">
+                        <strong>Location</strong><br><span class="bio">Pune, India</span>
+                    </div>
+                    <div style="margin-top:10px">
+                        <strong>Social</strong>
+                        <div class="socials" style="margin-top:8px">
+                            <a href="#" aria-label="Github">GitHub</a>
+                            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+                            <a href="#" aria-label="Twitter">Twitter</a>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <footer>
+            <div class="container" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap">
+                <div>© <span id="year"></span> Mahesh K. — Built with care.</div>
+                <div class="socials"><a href="#">Privacy</a> · <a href="#">Terms</a></div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Image modal -->
+    <div class="modal" id="modal">
+        <div class="modal-inner">
+            <img id="modalImg" alt="Project preview">
+        </div>
+    </div>
+
+    <script>
+        /* ---------------------------
+           Utilities & interactions
+           --------------------------- */
+
+        // set copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.length > 1) {
+                    e.preventDefault();
+                    const el = document.querySelector(href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // mobile nav toggle
+        const hamb = document.getElementById('hamb');
+        const navList = document.getElementById('navList');
+        hamb.addEventListener('click', () => navList.classList.toggle('open'));
+
+        // project modal viewer
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('click', () => {
+                const img = card.getAttribute('data-image');
+                const title = card.getAttribute('data-title');
+                const desc = card.getAttribute('data-desc');
+                const m = document.getElementById('modal');
+                document.getElementById('modalImg').src = img;
+                document.getElementById('modalImg').alt = title + ' - ' + desc;
+                m.classList.add('open');
+            });
+        });
+        document.getElementById('modal').addEventListener('click', (e) => {
+            if (e.target.id === 'modal' || e.target.id === 'modalImg') {
+                document.getElementById('modal').classList.remove('open');
+            }
+        });
+
+        // fake resume download
+        function downloadResume() {
+            const txt = "Mahesh Kharote - Resume (sample)";
+            const blob = new Blob([txt], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url; a.download = 'Mahesh_Kharote_Resume.txt';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // open all projects (example)
+        function openAllProjects() {
+            alert('Open projects page / GitHub repo (link placeholder).');
+        }
+
+        /* ---------------------------
+           Contact form client-side validation (simulated send)
+           --------------------------- */
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            // clear errors
+            ['name', 'email', 'subject', 'message'].forEach(id => {
+                document.getElementById('err-' + id).textContent = '';
+            });
+
+            // gather values
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+
+            let ok = true;
+            if (name.length < 2) { document.getElementById('err-name').textContent = 'Please enter your name.'; ok = false; }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { document.getElementById('err-email').textContent = 'Please enter a valid email.'; ok = false; }
+            if (subject.length < 3) { document.getElementById('err-subject').textContent = 'Subject is too short.'; ok = false; }
+            if (message.length < 10) { document.getElementById('err-message').textContent = 'Message must be at least 10 characters.'; ok = false; }
+
+            if (!ok) return;
+
+            // simulate sending
+            const success = document.getElementById('form-success');
+            success.style.display = 'block';
+            success.textContent = 'Message validated — ready to send (client-side only).';
+
+            // Reset after short delay (simulate)
+            setTimeout(() => {
+                success.style.display = 'none';
+                form.reset();
+                alert('Message simulated as sent. In production, post the form to your backend or use email API.');
+            }, 1400);
+        });
+
+        /* ---------------------------
+           Accessibility improvements
+           --------------------------- */
+        // trap focus in modal when open (basic)
+        const modal = document.getElementById('modal');
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') modal.classList.remove('open');
+        });
+
+        /* ---------------------------
+           Performance: lazy load project images (simple)
+           --------------------------- */
+        document.querySelectorAll('.project-card img').forEach(img => {
+            img.loading = 'lazy';
+        });
+    </script>
 </body>
 
 </html>
